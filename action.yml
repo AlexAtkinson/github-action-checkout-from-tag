@@ -1,0 +1,28 @@
+name: 'Checkout From Tag'
+author: 'EvilKittenLord'
+description: 'Shallow clones a repo to the depth of the specified tag (or commit hash). Depth is auto-detected. '
+branding:
+  icon: settings
+  color: white
+inputs:
+  repo:
+    description: "The repository to clone."
+    required: false
+    default: "git@github.com:${{ github.repository }}.git"
+  tag:
+    description: "The tag (or commit hash) to clone to."
+    required: false
+    default: 'unset'
+  dir:
+    description: "The target directory to clone into."
+    requied: false
+    default: $GITHUB_WORKSPACE
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Shallow Clone
+      run: |
+          ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }}
+      shell: bash
