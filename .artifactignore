@@ -1,0 +1,5 @@
+.artifactignore
+.git/
+.github/
+LICENSE
+README.md
