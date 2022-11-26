@@ -15,7 +15,6 @@ inputs:
   tag:
     description: "The tag (or commit hash) to clone to."
     required: false
-    default: 'unset'
   dir:
     description: "The target directory to clone into."
     required: false
