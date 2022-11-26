@@ -110,7 +110,7 @@ git clone -q --bare $repo $tmp_dir
 cd "$tmp_dir" || exit
 echo -e "Determine tag depth..."
 lastCommitHash=$(git rev-parse HEAD)
-tag_depth="$(($(git log --pretty=oneline "$tag".."$lastCommitHash" | wc -l) + 1))"
+tag_depth="$(($(git log --no-merges --pretty=oneline "$tag".."$lastCommitHash" | wc -l) + 1))"
 echo -e "Tag $tag is at a depth of $tag_depth..."
 
 # Cleanup tmp resources
