@@ -19,18 +19,33 @@ No, there is no git option to clone a repo _after_, or _between_ specified commi
 
 ## Usage
 
+The default behavior of this action is similar to that of 'actions/checkout', except that this action will automatically detect the last semver tag and clone from there to 'origin/HEAD'.
+
+This behavior can be overridden with the following options.
+
 ### Inputs
 
 <dl>
-  <dt>tag: [string] (Required)</dt>
-    <dd>The tag or commit hash to clone to.</dd>
+  <dt>tag: [string] (Optional)</dt>
+    <dd>The tag or commit hash to clone from.<br>
+    When NOT supplied this action attempts to detect the last semver tag for the repo.
+    </dd>
   <dt>repo: [string] (Optional)</dt>
     <dd>The repository to clone.<br>
-    Example: 'git@github.com:AlexAtkinson/github-action-checkout-from-tag.git'<br>
-    Default: The user action repository.</dd>
+    Specify to clone a different repository.<br>
+    Default: The user action repository.
+    </dd>
+  <dt>ssh-token: [string] (Optional/Required)</dt>
+    <dd>The <a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys">deploy</a>/<a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users">machine</a> token for a private repository.<br>
+    Required if cloning a 3rd party private repo.<br>
+    WARN: Supply as a <a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets">secret</a>.
+    </dd>
   <dt>dir: [string] (Optional)</dt>
     <dd>The directory into which to clone the repository.<br>
-    Default: The name of the repository.</dd>
+    When supplied, the target dir is '$GITHUB_WORKSPACE/$dir'.<br>
+    The directory must either not exist, or be empty.<br>
+    Default: $GITHUB_WORKSPACE
+    </dd>
 </dl>
 
 ### Example GH Action Workflow

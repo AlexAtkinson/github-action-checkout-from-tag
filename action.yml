@@ -9,6 +9,9 @@ inputs:
     description: "The repository to clone."
     required: false
     default: "https://github.com/${{ github.repository }}.git"
+  ssh-token:
+    description: "Required for cloning private repositories in other organizations."
+    required: false
   tag:
     description: "The tag (or commit hash) to clone to."
     required: false
@@ -23,6 +26,10 @@ runs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Shallow Clone
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
-          ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }}
+        [[ -n ${{ inputs.ssh-token }} ]] && ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+        [[ -n ${{ inputs.ssh-token }} ]] && ssh-add - <<< '${{ inputs.ssh-token }}'
+        ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }}
       shell: bash
