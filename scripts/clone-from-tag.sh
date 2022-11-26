@@ -106,26 +106,10 @@ echo -e "\nClone bare repository..."
 mkdir $tmp_dir
 git clone -q --bare $repo $tmp_dir
 
-echo "DEBUG:working directory: $(pwd)"
-echo "DEBUG:tmp_dir: $tmp_dir"
-echo "DEBUG: ls"
-ls -la
-
-cd "$tmp_dir" || exit
-
-echo "DEBUG:working directory: $(pwd)"
-echo "DEBUG: ls"
-ls -la
-
 # Determine tag depth
+cd "$tmp_dir" || exit
 echo -e "Determine tag depth..."
 lastCommitHash=$(git rev-parse HEAD)
-
-echo "DEBUG:tag: $tag"
-echo "DEBUG:lastCommitHash: $lastCommitHash"
-echo "DEBUG:tags:"
-git tag
-
 tag_depth="$(($(git log --pretty=oneline "$tag".."$lastCommitHash" | wc -l) + 1))"
 echo -e "Tag $tag is at a depth of $tag_depth..."
 
