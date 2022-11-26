@@ -90,6 +90,11 @@ if [[ "$tag" == "unset" ]]; then
   tag="$(git ls-remote --tags "$repo" | awk -F '/' '{print $3}' | grep -E $semverRegex | sort -rV | head -n 1)"
 fi
 
+if [[ "$repo" == "unset" ]]; then
+  deepen=true
+  repo="https://github.com/${{ github.repository }}.git"
+fi
+
 # --------------------------------------------------------------------------------------------------
 # Variables
 # --------------------------------------------------------------------------------------------------
@@ -120,8 +125,8 @@ rm -rf "$tmp_dir"
 # Execute shallow clone
 echo -e "Cloning $repo to a depth of: $tag_depth...\n"
 
-if [[ "$repo" == "unset" ]]; then
-  git --deepen="$tag_depth"
+if [[ "$deepen" == true ]]; then
+  git fetch --deepen="$tag_depth"
 else
   git clone --depth="$tag_depth" "$repo" "$dir"
 fi
