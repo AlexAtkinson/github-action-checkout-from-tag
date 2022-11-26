@@ -85,8 +85,8 @@ shift $((OPTIND-1))
 # Sanity
 # --------------------------------------------------------------------------------------------------
 
-if [[ -n $tag ]]; then
-  echo -e "\e[01;31mERROR\e[00m: You MUST specify which tag/commit to clone to. (-t)"
+if [[ -z $tag ]]; then
+  echo -e "\e[01;31mERROR\e[00m: You MUST specify which tag/commit to clone from. (-t)"
   exit 1
 fi
 
