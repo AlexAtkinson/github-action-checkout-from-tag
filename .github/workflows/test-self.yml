@@ -12,9 +12,9 @@ jobs:
       with:
         repo: git@github.com:AlexAtkinson/github-action-gitops-autover.git
         tag: 0.1.6
-        dir: /tmp/foo_bar
+        dir: foo_bar
     - name: Verify Checkout
       run: |
-        cd /tmp/foo_bar
+        cd foo_bar
         git log --pretty=oneline
         echo -e "\n\nThere are several versions prior to 0.1.6, so as long as the log ends there, this action has executed successfully."
