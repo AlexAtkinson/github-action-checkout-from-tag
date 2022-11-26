@@ -25,11 +25,16 @@ runs:
   steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Setup SSH
+      if: ${{ input.ssh-token != '' }}
+      env: SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      shell: bash
+      run: |
+        ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+        ssh-add - <<< '${{ inputs.ssh-token }}'
     - name: Shallow Clone
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-      run: |
-        [[ -n ${{ inputs.ssh-token }} ]] && ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-        [[ -n ${{ inputs.ssh-token }} ]] && ssh-add - <<< '${{ inputs.ssh-token }}'
-        ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }}
       shell: bash
+      run: |
+        ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }}
