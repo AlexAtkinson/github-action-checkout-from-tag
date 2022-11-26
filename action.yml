@@ -8,14 +8,14 @@ inputs:
   repo:
     description: "The repository to clone."
     required: false
-    default: "https://github.com/${{ github.repository }}.git"
+    default: "unset"
   ssh-token:
     description: "Required for cloning private repositories in other organizations."
     required: false
   tag:
     description: "The tag (or commit hash) to clone to."
     required: false
-    default: 'unset'
+    default: "unset"
   dir:
     description: "The target directory to clone into."
     required: false

@@ -119,4 +119,9 @@ rm -rf "$tmp_dir"
 
 # Execute shallow clone
 echo -e "Cloning $repo to a depth of: $tag_depth...\n"
-git clone --depth="$tag_depth" "$repo" "$dir"
+
+if [[ "$repo" == "unset" ]]; then
+  git --deepen="$tag_depth"
+else
+  git clone --depth="$tag_depth" "$repo" "$dir"
+fi
