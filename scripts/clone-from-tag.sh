@@ -85,7 +85,7 @@ shift $((OPTIND-1))
 # Sanity
 # --------------------------------------------------------------------------------------------------
 
-if [[ -z $tag ]]; then
+if [[ "$tag" == "unset" ]]; then
   semverRegex="^[v]?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
   tag="$(git ls-remote --tags "$repo" | awk -F '/' '{print $3}' | grep -E $semverRegex | sort -rV | head -n 1)"
 fi
