@@ -1,4 +1,4 @@
-name: Validate Checkout From Tag
+name: Validate Checkout From Tag - No Inputs
 
 on:
   workflow_dispatch:
