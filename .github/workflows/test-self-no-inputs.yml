@@ -1,0 +1,16 @@
+name: Validate Checkout From Tag
+
+on:
+  workflow_dispatch:
+
+jobs:
+  use-action:
+    name: Checkout From Tag
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout github-actions-gitops-autover to the depth of the last DETECTED version
+      uses: AlexAtkinson/github-action-checkout-from-tag@latest
+    - name: Verify Checkout
+      run: |
+        cd foo_bar1
+        git log --tags --pretty=oneline --decorate=full

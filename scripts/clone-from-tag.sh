@@ -86,8 +86,8 @@ shift $((OPTIND-1))
 # --------------------------------------------------------------------------------------------------
 
 if [[ -z $tag ]]; then
-  echo -e "\e[01;31mERROR\e[00m: You MUST specify which tag/commit to clone from. (-t)"
-  exit 1
+  semverRegex="^[v]?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+  tag="$(git ls-remote --tags "$repo" | awk -F '/' '{print $3}' | grep -E $semverRegex | sort -rV | head -n 1)"
 fi
 
 # --------------------------------------------------------------------------------------------------
