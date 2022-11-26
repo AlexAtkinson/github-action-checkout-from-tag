@@ -12,5 +12,4 @@ jobs:
       uses: AlexAtkinson/github-action-checkout-from-tag@latest
     - name: Verify Checkout
       run: |
-        cd foo_bar1
         git log --tags --pretty=oneline --decorate=full

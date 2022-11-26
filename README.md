@@ -40,10 +40,11 @@ This behavior can be overridden with the following options.
     Required if cloning a 3rd party private repo.<br>
     WARN: Supply as a <a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets">secret</a>.
     </dd>
-  <dt>dir: [string] (Optional)</dt>
+  <dt>dir: [string] (Optional/Required)</dt>
     <dd>The directory into which to clone the repository.<br>
     When supplied, the target dir is '$GITHUB_WORKSPACE/$dir'.<br>
     The directory must either not exist, or be empty.<br>
+    Required if cloning a different repo.<br>
     Default: $GITHUB_WORKSPACE
     </dd>
 </dl>
