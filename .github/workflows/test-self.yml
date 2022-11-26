@@ -16,7 +16,7 @@ jobs:
         dir: foo_bar1
     - name: Verify Checkout
       run: |
-        cd foo_bar
+        cd foo_bar1
         git log --tags --pretty=oneline --decorate=full
     - name: Checkout github-actions-gitops-autover to the depth of tag 0.1.3
       uses: AlexAtkinson/github-action-checkout-from-tag@latest
@@ -26,5 +26,5 @@ jobs:
         dir: foo_bar2
     - name: Verify Checkout
       run: |
-        cd foo_bar
+        cd foo_bar2
         git log --tags --pretty=oneline --decorate=full
