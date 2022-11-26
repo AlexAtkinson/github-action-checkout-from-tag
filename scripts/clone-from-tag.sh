@@ -120,6 +120,12 @@ ls -la
 # Determine tag depth
 echo -e "Determine tag depth..."
 lastCommitHash=$(git rev-parse HEAD)
+
+echo "DEBUG:tag: $tag"
+echo "DEBUG:lastCommitHash: $lastCommitHash"
+echo "DEBUG:tags:"
+git tag
+
 tag_depth="$(($(git log --pretty=oneline "$tag".."$lastCommitHash" | wc -l) + 1))"
 echo -e "Tag $tag is at a depth of $tag_depth..."
 
