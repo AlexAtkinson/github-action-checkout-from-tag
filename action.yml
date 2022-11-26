@@ -27,7 +27,8 @@ runs:
       uses: actions/checkout@v3
     - name: Setup SSH
       if: ${{ input.ssh-token != '' }}
-      env: SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       shell: bash
       run: |
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
