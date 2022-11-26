@@ -105,7 +105,17 @@ tmp_dir="$(openssl rand -base64 128 | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 
 echo -e "\nClone bare repository..."
 mkdir $tmp_dir
 git clone -q --bare $repo $tmp_dir
+
+echo "DEBUG:working directory: $(pwd)"
+echo "DEBUG:tmp_dir: $tmp_dir"
+echo "DEBUG: ls"
+ls -la
+
 cd "$tmp_dir" || exit
+
+echo "DEBUG:working directory: $(pwd)"
+echo "DEBUG: ls"
+ls -la
 
 # Determine tag depth
 echo -e "Determine tag depth..."

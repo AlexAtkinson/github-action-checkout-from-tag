@@ -8,7 +8,7 @@ inputs:
   repo:
     description: "The repository to clone."
     required: false
-    default: "git@github.com:${{ github.repository }}.git"
+    default: "https://github.com/${{ github.repository }}.git"
   tag:
     description: "The tag (or commit hash) to clone to."
     required: false
