@@ -1,0 +1,20 @@
+name: checkout-from-tag
+
+on:
+  workflow_dispatch:
+
+jobs:
+  use-action:
+    name: Checkout From Tag
+    runs-on: ubuntu-latest
+    steps:
+    - uses: AlexAtkinson/github-action-checkout-from-tag@latest
+      with:
+        repo: github-action-gitops-autover
+        tag: 0.1.6
+        dir: /tmp/foo_bar
+    - name: Verify Checkout
+      run: |
+        cd /tmp/foo_bar
+        git log --pretty=oneline
+        echo -e "\n\nThere are several versions prior to 0.1.6, so as long as the log ends there, this action has executed successfully."
