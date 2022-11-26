@@ -18,7 +18,7 @@ inputs:
     default: 'unset'
   dir:
     description: "The target directory to clone into."
-    requied: false
+    required: false
     default: $GITHUB_WORKSPACE
 runs:
   using: "composite"
