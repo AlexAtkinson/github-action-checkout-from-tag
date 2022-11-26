@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: AlexAtkinson/github-action-checkout-from-tag@latest
       with:
-        repo: https://github.com/AlexAtkinson/github-action-checkout-from-tag.git
+        repo: https://github.com/AlexAtkinson/github-action-gitops-autover.git
         tag: 0.1.3
         dir: foo_bar
     - name: Verify Checkout
