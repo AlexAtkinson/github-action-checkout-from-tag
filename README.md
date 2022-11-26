@@ -26,6 +26,7 @@ No, there is no git option to clone a repo _after_, or _between_ specified commi
     <dd>The tag or commit hash to clone to.</dd>
   <dt>repo: [string] (Optional)</dt>
     <dd>The repository to clone.<br>
+    Example: 'git@github.com:AlexAtkinson/github-action-checkout-from-tag.git'<br>
     Default: The user action repository.</dd>
   <dt>dir: [string] (Optional)</dt>
     <dd>The directory into which to clone the repository.<br>
