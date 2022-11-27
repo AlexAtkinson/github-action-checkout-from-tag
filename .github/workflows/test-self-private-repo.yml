@@ -14,6 +14,7 @@ jobs:
         repo: https://github.com/AlexAtkinson/github-tester.git
         tag: 0.2.7
         dir: foo_bar1
+        ssh-token: ${{ secrets.TEST_DEPLOY_KEY }}
     - name: Verify Checkout
       run: |
         cd foo_bar1
