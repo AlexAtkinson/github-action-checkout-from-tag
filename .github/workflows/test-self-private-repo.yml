@@ -1,4 +1,4 @@
-name: Validate Checkout From Tag
+name: Validate - Private Repo
 
 on:
   workflow_dispatch:
