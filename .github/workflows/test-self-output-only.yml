@@ -1,0 +1,18 @@
+name: Validate Checkout From Tag - Output Depth Only
+
+on:
+  workflow_dispatch:
+
+jobs:
+  use-action:
+    name: Checkout From Tag
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout github-actions-gitops-autover to the depth of the last DETECTED version
+      uses: AlexAtkinson/github-action-checkout-from-tag@latest
+      id: checkout
+      with:
+        output-depth-only: true
+    - name: Verify Checkout
+      run: |
+        echo "DEPTH: ${{ steps.checkout.outputs.depth }}"
