@@ -15,7 +15,7 @@ Such scenarios have been countered several times through the years as the bones 
 
 > NOTE: The GitOps Automatic Versioning action will receive this update in a future release (post 0.1.7).
 
-No, there is no git option to clone a repo _after_, or _between_ specified commits.
+No, there is no git option to clone a repo _after_, or _between_ specified commits. You must know the depth before specifying it.
 
 ## Usage
 
@@ -38,7 +38,8 @@ This behavior can be overridden with the following options.
   <dt>ssh-token: [string] (Optional/Required)</dt>
     <dd>The <a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys">deploy</a>/<a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users">machine</a> token for a private repository.<br>
     Required if cloning a 3rd party private repo.<br>
-    WARN: Supply as a <a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets">secret</a>.
+    WARN: Supply as a <a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets">secret</a>.<br>
+    WARN: This is untested... atm.
     </dd>
   <dt>dir: [string] (Optional/Required)</dt>
     <dd>The directory into which to clone the repository.<br>
