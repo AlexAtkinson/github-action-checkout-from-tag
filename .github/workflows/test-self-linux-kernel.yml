@@ -1,0 +1,31 @@
+name: Validate - Linux Kernel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  use-action:
+    name: Checkout Linux Kernel
+    runs-on: ubuntu-latest
+    steps:
+    - name: alexatkinson/github-action-checkout-from-tag@v6.0-rc1
+      uses: AlexAtkinson/github-action-checkout-from-tag@latest
+      with:
+        repo: https://github.com/torvalds/linux
+        tag: v6.0-rc1
+        dir: v60rc1
+    - name: Verify Checkout Depth
+      run: |
+        cd v60rc1
+        git log --pretty=oneline --decorate=full
+    - name: actions/checkout - Shallow
+      uses: actions/checkout@v3
+      with:
+        repository: torvalds/linux
+        path: shallow
+    - name: actions/checkout - Full
+      uses: actions/checkout@v3
+      with:
+        repository: torvalds/linux
+        path: full
+        fetch-depth: 0
