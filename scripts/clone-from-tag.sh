@@ -65,7 +65,7 @@ fi
 # --------------------------------------------------------------------------------------------------
 
 OPTIND=1
-while getopts "hr:t:d:o" opt; do
+while getopts "hr:t:d:o:" opt; do
   case $opt in
     h)
       printHelp
@@ -81,7 +81,7 @@ while getopts "hr:t:d:o" opt; do
       dir="$OPTARG"
       ;;
     o)
-      output_depth_only="true"
+      output_depth_only="$OPTARG"
       ;;
     *)
       echo -e "\e[01;31mERROR\e[00m: Invalid argument!"
