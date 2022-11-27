@@ -53,7 +53,7 @@ This behavior can be overridden with the following options.
 
 This is a valid workflow utilizing this action.
 
-    name: checkout-from-tag
+    name: Validate Checkout From Tag
 
     on:
       workflow_dispatch:
@@ -63,16 +63,27 @@ This is a valid workflow utilizing this action.
         name: Checkout From Tag
         runs-on: ubuntu-latest
         steps:
-        - uses: AlexAtkinson/github-action-checkout-from-tag@latest
+        - name: Checkout github-actions-gitops-autover to the depth of tag 0.1.6
+          uses: AlexAtkinson/github-action-checkout-from-tag@latest
           with:
-            repo: github-action-gitops-autover
+            repo: https://github.com/AlexAtkinson/github-action-gitops-autover.git
             tag: 0.1.6
-            dir: /tmp/foo_bar
+            dir: foo_bar
         - name: Verify Checkout
           run: |
-            cd /tmp/foo_bar
-            git log --pretty=oneline
-            echo -e "\n\nThere are several versions prior to 0.1.6, so as long as the log ends there, this action has executed successfully."
+            cd foo_bar
+            git log --tags --pretty=oneline --decorate=full
+
+### Results
+
+#### Deepen Current Repo
+![Current Repo](./resources/images/verify-no-input.png)
+
+#### Clone a Different Repo to Depth of Tag...
+
+![Different Repo](./resources/images/verify-diff-repo.png)
+
+
 
 ## Code Logic
 
