@@ -48,6 +48,17 @@ This behavior can be overridden with the following options.
     Required if cloning a different repo.<br>
     Default: $GITHUB_WORKSPACE
     </dd>
+  <dt>output-depth-only: [bool] (Optional)</dt>
+    <dd>Output the detected depth without cloning/deepening.<br>
+    Default: false
+    </dd>
+</dl>
+
+### Outputs
+
+<dl>
+  <dt>depth: [string]</dt>
+    <dd>The depth of the tag/commit.</dd>
 </dl>
 
 ### Example GH Action Workflow

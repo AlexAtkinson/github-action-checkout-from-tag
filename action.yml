@@ -20,6 +20,14 @@ inputs:
     description: "The target directory to clone into."
     required: false
     default: $GITHUB_WORKSPACE
+  output-depth-only:
+    description: "Output the detected depth only."
+    required: false
+    default: "false"
+outputs:
+  depth:
+    description: "The depth of the tag/commit."
+    value: ${{ steps.main.outputs.depth }}
 runs:
   using: "composite"
   steps:
@@ -33,9 +41,11 @@ runs:
       run: |
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
         ssh-add - <<< '${{ inputs.ssh-token }}'
-    - name: Shallow Clone
+    - name: Main Operations
+      id: main
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       shell: bash
       run: |
-        ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }}
+        ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }} -o ${{ inputs.output-depth-only }}
+        echo "depth=$(cat /tmp/tag_depth)" | tee $GITHUB_OUTPUT

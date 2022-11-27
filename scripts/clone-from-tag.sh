@@ -4,6 +4,11 @@
 #
 # Description
 #   Clone a repo to the depth of specified tag.
+#   This script is published as a github action.
+#     https://github.com/marketplace/actions/checkout-from-tag
+#
+# License
+#   GPL-3.0
 #
 # --------------------------------------------------------------------------------------------------
 # Help
@@ -15,7 +20,7 @@ NAME
       ${0##*/}
 
 SYNOPSIS
-      ${0##*/} [-hrtd]
+      ${0##*/} [-hrtdo]
 
 DESCRIPTION
       Clone a repository to the depth of specified tag.
@@ -31,6 +36,9 @@ DESCRIPTION
 
       -d      Optional. The target directory to clone into.
                 Default: <repository name>
+
+      -o      Optional. Output the detected depth only, without cloning/deepening.
+                Default: false
 
 EXAMPLES
       Clone bar repo from version 1.2.3 into the /tmp/bar directory.
@@ -57,7 +65,7 @@ fi
 # --------------------------------------------------------------------------------------------------
 
 OPTIND=1
-while getopts "hr:t:d:" opt; do
+while getopts "hr:t:d:o" opt; do
   case $opt in
     h)
       printHelp
@@ -71,6 +79,9 @@ while getopts "hr:t:d:" opt; do
       ;;
     d)
       dir="$OPTARG"
+      ;;
+    o)
+      output_depth_only="true"
       ;;
     *)
       echo -e "\e[01;31mERROR\e[00m: Invalid argument!"
@@ -116,6 +127,7 @@ cd "$tmp_dir" || exit
 echo -e "Determine tag depth..."
 lastCommitHash=$(git rev-parse HEAD)
 tag_depth="$(($(git log --no-merges --pretty=oneline "$tag".."$lastCommitHash" | wc -l) + 1))"
+echo "$tag_depth" > /tmp/tag_depth
 echo -e "Tag $tag is at a depth of $tag_depth..."
 
 # Cleanup tmp resources
@@ -123,11 +135,12 @@ cd "$start_dir" || exit
 rm -rf "$tmp_dir"
 
 # Execute shallow clone
-
-if [[ "$deepen" == true ]]; then
-  echo -e "Deepening $repo to a depth of: $tag_depth...\n"
-  git fetch --deepen="$tag_depth"
-else
-  echo -e "Cloning $repo to a depth of: $tag_depth...\n"
-  git clone --depth="$tag_depth" "$repo" "$dir"
+if [[ $output_depth_only == "false" ]]; then
+  if [[ "$deepen" == true ]]; then
+    echo -e "Deepening $repo to a depth of: $tag_depth...\n"
+    git fetch --deepen="$tag_depth"
+  else
+    echo -e "Cloning $repo to a depth of: $tag_depth...\n"
+    git clone --depth="$tag_depth" "$repo" "$dir"
+  fi
 fi
