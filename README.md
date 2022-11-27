@@ -77,6 +77,7 @@ This is a valid workflow utilizing this action.
         steps:
         - name: Checkout github-actions-gitops-autover to the depth of tag 0.1.6
           uses: AlexAtkinson/github-action-checkout-from-tag@latest
+          id: checkout
           with:
             repo: https://github.com/AlexAtkinson/github-action-gitops-autover.git
             tag: 0.1.6
@@ -84,6 +85,7 @@ This is a valid workflow utilizing this action.
         - name: Verify Checkout
           run: |
             cd foo_bar
+            echo "DEPTH: ${{ steps.checkout.outputs.depth }}"
             git log --tags --pretty=oneline --decorate=full
 
 ### Results
