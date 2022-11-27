@@ -28,24 +28,26 @@ This behavior can be overridden with the following options.
 <dl>
   <dt>tag: [string] (Optional)</dt>
     <dd>The tag or commit hash to clone from.<br>
-    When NOT supplied this action attempts to detect the last semver tag for the repo.
+    When NOT supplied this action attempts to detect the last semver tag for the repo.<br>
+    <u>Default</u>: Null
     </dd>
   <dt>repo: [string] (Optional)</dt>
     <dd>The repository to clone.<br>
     Specify to clone a different repository.<br>
-    Default: The user action repository.
+    <b><i>If</b></i> cloning a <i>private</i> repo, use ssh url.<br>
+    <u>Default</u>: The user action repository.
     </dd>
   <dt>ssh-token: [string] (Optional/Required)</dt>
     <dd>The <a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys">deploy</a>/<a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users">machine</a> token for a private repository.<br>
-    Required if cloning a 3rd party private repo.<br>
+    <b><i>Required</i></b> if cloning a 3rd party <i>private</i> repo.<br>
     WARN: Supply as a <a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets">secret</a>.<br>
-    WARN: This is untested... atm.
+    <u>Default</u>: Null
     </dd>
   <dt>dir: [string] (Optional/Required)</dt>
     <dd>The directory into which to clone the repository.<br>
     When supplied, the target dir is '$GITHUB_WORKSPACE/$dir'.<br>
     The directory must either not exist, or be empty.<br>
-    Required if cloning a different repo.<br>
+    <b><i>Required</i></b> if cloning a different repo.<br>
     Default: $GITHUB_WORKSPACE
     </dd>
   <dt>output-depth-only: [bool] (Optional)</dt>
