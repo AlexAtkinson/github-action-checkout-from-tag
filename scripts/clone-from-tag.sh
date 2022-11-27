@@ -123,10 +123,11 @@ cd "$start_dir" || exit
 rm -rf "$tmp_dir"
 
 # Execute shallow clone
-echo -e "Cloning $repo to a depth of: $tag_depth...\n"
 
 if [[ "$deepen" == true ]]; then
+  echo -e "Deepening $repo to a depth of: $tag_depth...\n"
   git fetch --deepen="$tag_depth"
 else
+  echo -e "Cloning $repo to a depth of: $tag_depth...\n"
   git clone --depth="$tag_depth" "$repo" "$dir"
 fi
