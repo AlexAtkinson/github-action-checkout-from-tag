@@ -1,4 +1,4 @@
-name: Validate Checkout From Tag
+name: Validate - Depth By Tag
 
 on:
   workflow_dispatch:

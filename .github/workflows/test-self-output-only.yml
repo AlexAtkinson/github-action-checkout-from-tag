@@ -1,4 +1,4 @@
-name: Validate Checkout From Tag - Output Depth Only
+name: Validate - Output Depth Only
 
 on:
   workflow_dispatch:
