@@ -8,10 +8,10 @@
 ![Count of Action Users](https://img.shields.io/endpoint?url=https://AlexAtkinson.github.io/github-action-checkout-from-tag/github-action-checkout-from-tag.json&style=flat-square)
 <!-- https://github.com/marketplace/actions/count-action-users -->
 
-Unlike other clone/checkout actions, this action _automatically_ detects the depth of a specified tag or commit hash, and clones the specified repo from that depth.
+Unlike other clone/checkout actions, this action _automatically_ detects the depth of a specified tag or commit hash, and clones/deepens to that depth as necessary.
 
 While the shallow clone is often the answer when handling large repos with a lot of history, there are often times when it would be beneficial to be able to clone from 'origin/HEAD' back to a specific tag or commit hash.<br>
-Such scenarios have been countered several times through the years as the bones behind the [GitOps Automatic Versioning](https://github.com/marketplace/actions/gitops-automatic-versioning) Action were hardening. With the release of that action, the scope of this impediment across it's potential userbase and it's associated cost(s) became well worth mitigating.
+Such scenarios have been countered several times through the years as the bones behind the [GitOps Automatic Versioning](https://github.com/marketplace/actions/gitops-automatic-versioning) Action were hardening. With the release of that action, the scope of this impediment across its potential userbase and the associated cost(s) became well worth mitigating.
 
 > NOTE: The GitOps Automatic Versioning action will receive this update in a future release (post 0.1.7).
 
