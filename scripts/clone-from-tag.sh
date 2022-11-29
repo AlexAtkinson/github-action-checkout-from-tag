@@ -96,6 +96,8 @@ shift $((OPTIND-1))
 # Sanity
 # --------------------------------------------------------------------------------------------------
 
+echo "REPO: $GITHUB_REPOSITORY_URL"
+
 if [[ "$repo" == "unset" ]]; then
   deepen=true
   repo="$GITHUB_REPOSITORY_URL"
