@@ -98,7 +98,7 @@ shift $((OPTIND-1))
 
 if [[ "$repo" == "unset" ]]; then
   deepen=true
-  repo="https://github.com/${GITHUB_REPOSITORY}.git"
+  repo="$GITHUB_REPOSITORY_URL"
 fi
 
 if [[ "$tag" == "unset" ]]; then

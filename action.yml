@@ -45,6 +45,7 @@ runs:
       id: main
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        GITHUB_REPOSITORY_URL: ${{ github.repositoryUrl }}
       shell: bash
       run: |
         ${{ github.action_path }}/scripts/clone-from-tag.sh -r ${{ inputs.repo }} -t ${{ inputs.tag }} -d ${{ inputs.dir }} -o ${{ inputs.output-depth-only }}
