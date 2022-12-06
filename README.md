@@ -4,7 +4,7 @@
 ![license](https://img.shields.io/github/license/AlexAtkinson/github-action-checkout-from-tag?style=flat-square)
 ![language](https://img.shields.io/github/languages/top/AlexAtkinson/github-action-checkout-from-tag?style=flat-square)
 ![repo size](https://img.shields.io/github/repo-size/AlexAtkinson/github-action-checkout-from-tag?style=flat-square)
-![HitCount](https://hits.dwyl.com/AlexAtkinson/github-action-checkout-from-tag.svg?style=flat-square)
+<!-- ![HitCount](https://hits.dwyl.com/AlexAtkinson/github-action-checkout-from-tag.svg?style=flat-square) -->
 ![Count of Action Users](https://img.shields.io/endpoint?url=https://AlexAtkinson.github.io/github-action-checkout-from-tag/github-action-checkout-from-tag.json&style=flat-square)
 <!-- https://github.com/marketplace/actions/count-action-users -->
 
