@@ -11,14 +11,14 @@
 Unlike other clone/checkout actions, this action _automatically_ detects the depth of a specified tag or commit hash, and clones/deepens to that depth as necessary.
 
 While the shallow clone is often the answer when handling large repos with a lot of history, there are often times when it would be beneficial to be able to clone from 'origin/HEAD' back to a specific tag or commit hash.<br>
-Such scenarios have been countered several times through the years as the bones behind the [GitOps Automatic Versioning](https://github.com/marketplace/actions/gitops-automatic-versioning) Action were hardening. With the release of that action, the scope of this impediment across its potential userbase and the associated cost(s) became well worth mitigating.
+Such scenarios have been encountered several times through the years as the bones behind the [GitOps Automatic Versioning](https://github.com/marketplace/actions/gitops-automatic-versioning) action were hardening. With the release of that action, the scope of this impediment across its potential userbase and the associated cost(s) became well worth mitigating.
 
 That said, there's only so much you can do if your .pack file is ~4GB, like like that of [torvals/linux](https://github.com/torvalds/linux). At this point you're still going to wait at least 20m for the bare repository to clone before the depth of the tag can even be determined...<br>
 Future Enhancmenet: Adjust the bare directory to be cached with [actions/cache](https://github.com/marketplace/actions/cache). Note to self: Requires 'git fetch <repo_url>' from within dir to update.
 
 > NOTE: The GitOps Automatic Versioning action will receive this update in a future release (post 0.1.7).
 
-No, there is no git option to clone a repo _after_, or _between_ specified commits. You must know the depth before specifying it.
+No, there is no git option to clone a repo _after_, or _between_ specified commits. You must know the depth before specifying it. This is the value offered by this action.
 
 ## Usage
 
