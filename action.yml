@@ -12,6 +12,7 @@ inputs:
   ssh-token:
     description: "Required for cloning private repositories in other organizations."
     required: false
+    default: "unset"
   tag:
     description: "The tag (or commit hash) to clone to."
     required: false
@@ -34,7 +35,7 @@ runs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Setup SSH
-      if: ${{ inputs.ssh-token != '' }}
+      if: ${{ ! inputs.ssh-token == 'unset' }}
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       shell: bash
